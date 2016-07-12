@@ -4,21 +4,26 @@ myApp.config(["$routeProvider", function ($routeProvider){ // use ngRoute to dis
   $routeProvider.
       when("/home",{
         templateUrl: "/ngroutes/home.html",
-        controller:"UserController"
+        controller:"controller"
       }).
       when("/settings",{
         templateUrl: "/ngroutes/settings.html",
-        controller:"UserController"
+        controller:"controller"
+      }).
+      otherwise({
+        redirectTo: "/home"
       });
-      // otherwise({
-      //   redirectTo: "/login"
-      // });
 
 }]);//end ngrouter
 
 //create controller for page
 myApp.controller('controller', ['$scope', '$http', function( $scope , $http ){
+  var homeLoc = $scope.homeIn;
+  var destLoc = $scope.destIn;
 
+  var setTrack = function(homeLoc,destLoc) {
+    
+  };
 }]); //end controller
 
 myApp.controller('UserController', ['$scope', '$http', '$window', function($scope, $http, $window) {

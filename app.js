@@ -8,9 +8,9 @@ var passport = require('./strategies/userStrategy');
 var session = require('express-session');
 
 // Route includes
-var index = require('./routes/index');
-var user = require('./routes/user');
-var register = require('./routes/register');
+var index = require('./routes/indexRoute');
+var user = require('./routes/userRoute');
+var register = require('./routes/registerRoute');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -48,7 +48,7 @@ mongoDB.on('error', function(err){
 });
 
 mongoDB.once('open', function(){
-   console.log("Connected to Mongo, meow!");
+   console.log("Connected to Mongo!");
 });
 
 // App Set //

@@ -1,4 +1,4 @@
-\q\\q\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Express / Passport</title>
@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/vendors/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/styles/style.css">
 
-    <script type="text/javascript" src="/vendors/angular.min.js"></script>
-    <script type="text/javascript" src="/assets/scripts/app.js"></script>
+    <script src="/vendors/angular.min.js" charset="utf-8"></script>
+    <script src="/assets/scripts/script.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
 </head>
 <body ng-app="myApp">
     <div class="instructions">
@@ -25,11 +26,12 @@
             </div>
 
             <div>
-                <label for="password">Password:</label>
+                <label for="password">Password: </label>
                 <input type="password" name="password" id="password">
             </div>
 
             <input type="submit" value="Register"/>
+            <a href="/index">Log in</a>
         </form>
     </div>
 </body>
