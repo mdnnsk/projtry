@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Express / Passport</title>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- <link rel="stylesheet" href="/vendors/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="/assets/styles/index.css">
+        <script src="/vendors/angular.min.js" charset="utf-8"></script>
+        <script src="/assets/scripts/script.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
+  </head>
 
-    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/styles/style.css">
+  <body ng-app="myApp">
 
-    <script src="/vendors/angular.min.js" charset="utf-8"></script>
-    <script src="/assets/scripts/script.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
-</head>
-<body ng-app="myApp">
-    <div class="instructions">
-        <div class="container">
-            <h1 class="lead">Register New User</h1>
-        </div>
-    </div>
+    <div id="clouds">
+	<div class="cloud x1"></div>
+	<!-- Time for multiple clouds to dance around -->
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
 
-    <div class="container">
-        <!-- Set action and method -->
+ <div class="container">
+
+
+      <div id="login">
+
         <form action="/register" method="post">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-            </div>
 
-            <div>
-                <label for="password">Password: </label>
-                <input type="password" name="password" id="password">
-            </div>
+          <fieldset class="clearfix">
 
-            <input type="submit" value="Register"/>
-            <a href="/index">Log in</a>
+            <p><span class="fontawesome-user"></span><input type="text" name="username" id="username" placeholder="Username" required></p>
+            <p><span class="fontawesome-lock"></span><input type="password" name="password"  id="password" placeholder="Password" required></p>
+            <p><input type="submit" value="Register"></p>
+          </fieldset>
+
         </form>
+
+        <p>Already registered? <a href="/index" class="blue">Login now!</a><span class="fontawesome-arrow-right"></span></p>
+
+      </div> <!-- end Register -->
+
     </div>
-</body>
+
+  </body>
 </html>

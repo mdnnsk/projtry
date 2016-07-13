@@ -10,8 +10,9 @@
     <script src="/assets/scripts/script.js" charset="utf-8"></script>
     <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
   </head>
-  <body ng-controller="UserController">
+  <body ng-controller="controller">
     <h1>flytrends</h1>
+    <h3>Welcome back, {{userName}}!</h3>
     <div ng-include="'/partials/nav.html'"></div>
     <main ng-view></main>
 
