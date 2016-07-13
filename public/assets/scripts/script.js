@@ -32,6 +32,10 @@ myApp.controller('controller', ['$scope', '$http', function( $scope , $http ){
   var homeLoc = $scope.homeIn;
   var destLoc = $scope.destIn;
   //check db if shortcodes and/or cities matched
+  $http.get('/location').then(function (response) {
+    
+
+  });
 
   //if dont match - tell user in modal and ask them to try again
 

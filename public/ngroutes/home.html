@@ -3,9 +3,9 @@
 <p>select destination to track</p>
 <input type="text" id="destIn" name="name" value="" placeholder="Enter city or airport code">
 <div class="modalDiv" ng-controller="MyCtrl">
-<button ng-click='toggleModal()'>Track</button>
+<button ng-click='toggleModal()'>Track prices</button>
 <modal-dialog show='modalShown' width='60%' height='60%'>
-  <p>{{Modal Content Goes here}}<p>
+  <p>{{modalContent}}<p>
 </modal-dialog>
 </div>
 <div class="trackingDiv">

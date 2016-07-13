@@ -11,6 +11,7 @@ var session = require('express-session');
 var index = require('./routes/indexRoute');
 var user = require('./routes/userRoute');
 var register = require('./routes/registerRoute');
+var location = require('./routes/locationRoute');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,12 +34,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/location', location);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/*', index);
 
 // Mongo Connection //
-var mongoURI = "mongodb://localhost:27017/user_passport_session";
+var mongoURI = "mongodb://localhost:27017/flights";
 var mongoDB = mongoose.connect(mongoURI).connection;
 
 mongoDB.on('error', function(err){
