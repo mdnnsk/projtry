@@ -1,9 +1,10 @@
 <p>select home base</p>
-<input type="text" id="homeIn" name="name" value="" placeholder="Enter city or airport code">
+<input type="text" id="homeIn" ng-model="homeIn" name="name" value="" placeholder="Enter city or airport code">
 <p>select destination to track</p>
-<input type="text" id="destIn" name="name" value="" placeholder="Enter city or airport code">
-<div class="modalDiv" ng-controller="MyCtrl">
+<input type="text" id="destIn" ng-model="destIn" name="name" value="" placeholder="Enter city or airport code">
+<div class="modalDiv" ng-controller="controller">
 <button ng-click='toggleModal()'>Track prices</button>
+<!-- <button type="button" ng-click='checkInput()' name="button">check input</button> -->
 <modal-dialog show='modalShown' width='60%' height='60%'>
   <p>{{modalContent}}<p>
 </modal-dialog>
