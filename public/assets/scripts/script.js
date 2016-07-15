@@ -47,7 +47,16 @@ $scope.checkInput = function (){
       data: checkInputObj,
       headers: {'Content-Type': 'application/json;charset=utf-8'}
     }).then ( function (response){
-      console.log("in post call " + response.data.length);
+      console.log("in post call " , response.data);
+      var receiveLoc = response.data;
+      //check if both items were returned from db.
+      if (receiveLoc.length ==2 ) {
+        //go through a loop to match the from/to destinations
+        for (var i = 0; i < receiveLoc.length; i++) {
+           receiveLoc[i].city || receiveLoc[i].code
+        }
+      }
+
 
     });
 }; //end checkInput
