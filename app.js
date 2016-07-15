@@ -8,6 +8,7 @@ var passport = require('./strategies/userStrategy');
 var session = require('express-session');
 
 // Route includes
+var data = require('./routes/dataRoute');
 var index = require('./routes/indexRoute');
 var user = require('./routes/userRoute');
 var register = require('./routes/registerRoute');
@@ -34,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/data', data);
 app.use('/location', location);
 app.use('/register', register);
 app.use('/user', user);

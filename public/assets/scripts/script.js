@@ -52,19 +52,23 @@ $scope.checkInput = function (){
     });
 }; //end checkInput
 
+
+//modal?
 $scope.clickToOpen = function () {
 ngDialog.open({ template: 'popupTmpl.html' });
 };
 
+
+//send API request,
 $scope.sendApiRequest = function () {
 
   var apiQuery = {
   "request": {
     "slice": [
       {
-        "origin": "MSP",
-        "destination": "SFO",
-        "date": "2016-07-28",
+        "origin": "MSP", //will populate dynamically from user entry
+        "destination": "SFO", //also dynamic
+        "date": "2016-07-29", // also
         "maxStops": 0
       }
     ],
@@ -78,56 +82,23 @@ $scope.sendApiRequest = function () {
     "solutions": 1,
     "refundable": false
   }
-};
+  };
 
-$http({
+  $http({
     method: 'POST',
     url: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyA_zDR1qkXyrp2P8uspcZ-oJLWbr474pjI',
     data: apiQuery,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then ( function (response){
-    console.log("in api call " + response.data);
-
-  });
+    console.dir("in api call " + response.data.trips.tripOption);
+        $http({
+        method: 'POST',
+        url: '/data',
+        data: response.data.trips.tripOption,
+        headers: {'Content-Type': 'application/json;charset=utf-8'}
+        });
+    });
 
 };//end API request function
-  //if dont match - tell user in modal and ask them to try again
 
-  //if entries match confirm them with user
-
-  // append tracking entries to dom - triggered by confirmation on modal
-
-  // var setTrack = function(homeLoc,destLoc) {
-  //
-  // };
-
-// //toggle modal and check inputs
-//   $scope.modalShown = false;
-//   $scope.toggleModal = function() {
-//     $scope.modalShown = !$scope.modalShown;
-//     $scope.checkInput();
-//   }; //end toggle modal
-//
-// }]); //end controller
-//
-// myApp.directive('modalDialog', function() {
-//   return {
-//     restrict: 'E',
-//     scope: {
-//       show: '='
-//     },
-//     replace: true,
-//     transclude: true,
-//     link: function(scope, element, attrs) {
-//       scope.dialogStyle = {};
-//       if (attrs.width)
-//         scope.dialogStyle.width = attrs.width;
-//       if (attrs.height)
-//         scope.dialogStyle.height = attrs.height;
-//       scope.hideModal = function() {
-//         scope.show = false;
-//       };
-//     },
-//     template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
-  }]);
-// });
+}]);
