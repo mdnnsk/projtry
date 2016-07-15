@@ -2,13 +2,33 @@
 <input type="text" id="homeIn" ng-model="homeIn" name="name" value="" placeholder="Enter city or airport code">
 <p>select destination to track</p>
 <input type="text" id="destIn" ng-model="destIn" name="name" value="" placeholder="Enter city or airport code">
-<!-- <div class="modalDiv" ng-controller="controller">
-<button ng-click='toggleModal()'>Track prices</button>
-<modal-dialog show='modalShown' width='60%' height='60%'>
-  <p>{{modalContent}}<p>
-</modal-dialog>
-</div> -->
-<button type="button" name="button" ng-click="">MODAL OPEN</button>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <button type="button" name="button" ng-click="sendApiRequest()">API REQ</button>
 
 <div class="trackingDiv">

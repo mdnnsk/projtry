@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ["ngRoute", "ngDialog"]);
+var myApp = angular.module('myApp', ["ngRoute"]);
 
 myApp.config(["$routeProvider", function ($routeProvider){ // use ngRoute to display 2 views
   $routeProvider.
@@ -54,9 +54,7 @@ $scope.checkInput = function (){
 
 
 //modal?
-$scope.clickToOpen = function () {
-ngDialog.open({ template: 'popupTmpl.html' });
-};
+
 
 
 //send API request,
