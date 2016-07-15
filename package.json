@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-modal-service": "^0.10.1",
     "angular-route": "^1.5.7",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
@@ -12,6 +13,7 @@
     "express": "^4.14.0",
     "express-session": "^1.14.0",
     "mongoose": "^4.5.4",
+    "ng-dialog": "^0.6.2",
     "npm-install-missing": "^0.1.4",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

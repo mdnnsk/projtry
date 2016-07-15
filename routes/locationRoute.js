@@ -20,15 +20,16 @@ router.post('/', function(req, res) {
     ]}
   ).then(function(data){
     console.log(data);
-    var returnCities = [];
-    var returnCodes = [];
-    var returnData = [returnCities,returnCodes];
-    for (var i = 0; i < data.length; i++) {
-      returnCodes.push(data[i].code);
-      returnCities.push(data[i].city);
-    }
-    console.log(returnData);
-    res.send(returnData);
+    res.send (data);
+    // var returnFrom = [];
+    // var returnTo = [];
+    // var returnData = [returnFrom,returnTo];
+    // for (var i = 0; i < data.length; i++) {
+    //   returnTo.push(data[i].code);
+    //   returnFrom.push(data[i].city);
+    // }
+    // console.log(returnData);
+    // res.send(returnData);
   });
 });
 

@@ -2,13 +2,30 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
+// var info = require('../models/info');
 
 // Mongoose Schema
 var UserSchema = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
-    homeLoc: {type:String, default: null},
-    destLoc: {type:String, default: null}
+    homeLoc: {
+      code: String,
+      name: String,
+      city: String,
+      state: String,
+      country: String,
+      icao: String,
+    },
+    destLoc: {
+      code: String,
+      name: String,
+      city: String,
+      state: String,
+      country: String,
+      icao: String
+    }
+    // homeLoc: [{type: mongoose.Schema.Types.ObjectId, ref: 'info', default : null}],
+    // destLoc: [{type: mongoose.Schema.Types.ObjectId, ref: 'info', default : null}]
 });
 
 // Called before adding a new user to the DB. Encrypts password.
