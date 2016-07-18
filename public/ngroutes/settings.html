@@ -2,8 +2,14 @@
   Select date to track:
 </p>
 <p>
-  <input type="date" name="name" value="" ng-model="dateSelected">
+  <input type="date" name="name" value="" ng-model="dateSelected"> Currently tracking: <b>{{ showDateSelected }}</b>
 </p>
 <p>
-  Currently tracking: {{ dateSelected }}
+  <button type="button" id="saveDate" name="button" ng-click="saveDate()" >Save</button>
+</p>
+<p>
+  Notify when price goes below:
+</p>
+<p>
+  <input type="text" id="notifyPrice" name="name" value="">
 </p>

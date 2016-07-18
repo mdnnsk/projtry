@@ -36,6 +36,22 @@ router.post('/', function(req, res){
   });
 });
 
+router.post('/updateDate', function(req, res){
+
+  console.log('updating locations');
+  user.findOne({username: req.body.user}, function (err, userResult){
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }else{
+      user.update({
+        trackDate:req.body.trackDate
+      }, function(err) {});
+      res.sendStatus(200);
+    }
+  });
+});
+
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');

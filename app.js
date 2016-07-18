@@ -13,6 +13,7 @@ var index = require('./routes/indexRoute');
 var user = require('./routes/userRoute');
 var register = require('./routes/registerRoute');
 var location = require('./routes/locationRoute');
+var mailer = require('./routes/mailerRoute');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,6 +41,7 @@ app.use('/location', location);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/*', index);
+app.use('/send', mailer);
 
 // Mongo Connection //
 var mongoURI = "mongodb://localhost:27017/flights";

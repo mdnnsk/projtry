@@ -16,21 +16,29 @@ myApp.config(["$routeProvider", function ($routeProvider){ // use ngRoute to dis
 
 }]);//end ngrouter
 
-var currentUser;
-//create controller for page
-myApp.controller('controller', ['$scope', '$http', '$window', function( $scope , $http, $window, ngDialog){
-  //populate username dynamically from db
-  $http.get('/user').then(function(response) {
-      currentUser=response.data;
-      if(currentUser.username) {
-          $scope.userName = currentUser.username;
-          console.log('User Data: ', $scope.userName);
-      } else {
-          $window.location.href = '/index.html';
-      }
-  });
 
-  //scope the inputs
+
+//create controller for page
+myApp.controller('controller', ['$scope', '$http', '$window', function( $scope , $http, $window){
+  var currentUser;
+  //populate username dynamically from db
+  $scope.getUserInfo = function (){
+    $http.get('/user').then(function(response) {
+        currentUser=response.data;
+        if(currentUser.username) {
+            $scope.userName = currentUser.username;
+            $scope.currentLocation = currentUser.homeLoc.city;
+            $scope.currentDestination = currentUser.destLoc.city;
+            $scope.showDateSelected = (currentUser.trackDate).slice(0,10);
+            console.log('User Data: ', $scope.userName);
+          } else {
+            $window.location.href = '/index.html';
+          }
+        });
+  };
+  $scope.getUserInfo();
+
+//scope the inputs
 
 var userLocations;
 
@@ -43,7 +51,7 @@ $scope.checkInput = function (){
     to : destLocIn
   };
   console.log(checkInputObj);
-  //check db if shortcodes and/or cities matched
+  //check db if shortcodes and/or cities matched and bring up modal
   $http({
       method: 'POST',
       url: '/location',
@@ -56,6 +64,8 @@ $scope.checkInput = function (){
       $scope.destLoc = userLocations[1].city;
 
     });
+
+
 }; //end checkInput
 
 
@@ -70,8 +80,12 @@ $scope.saveTracking = function(data) {
     url:'/user',
     data:userLocationsObj,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
-  });
-
+  }).success(function(){
+  console.log(currentUser);
+  $scope.getUserInfo();
+  $scope.currentLocation = currentUser.homeLoc.city;
+  $scope.currentDestination = currentUser.destLoc.city;
+});
 };
 
 
@@ -87,7 +101,7 @@ $scope.sendApiRequest = function () {
       {
         "origin": currentUser.homeLoc.code,
         "destination": currentUser.destLoc.code,
-        "date": apiReqDate, 
+        "date": apiReqDate,
         "maxStops": 0
       }
     ],
@@ -109,18 +123,22 @@ $scope.sendApiRequest = function () {
     data: apiQuery,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then ( function (response){
-    console.dir("in api call " + response.data.trips.tripOption);
+    // console.dir("in api call " + response.data.trips.tripOption);
         $http({
         method: 'POST',
         url: '/data',
         data: response.data.trips.tripOption,
         headers: {'Content-Type': 'application/json;charset=utf-8'}
-        });
+      }).then( function(){
+        $scope.displayChart();
+      });
     });
-  $scope.displayChart();
+
 }};//end API request function
 
+//hide the graph on start
 $scope.tracker = false;
+
 //instert data into chartsJS and display upon request
 
 $scope.displayChart = function (){
@@ -161,4 +179,24 @@ $http.get('/data').then(function(response) {
 });//end function after http
 };
 $scope.displayChart();
+
+//allow user to select date for which to track flights for
+$scope.saveDate = function (){
+  var sendDate ={
+    user: currentUser.userName ,
+    trackDate: $scope.dateSelected
+  };
+  $http({
+    method:'POST',
+    url:'/user/updateDate',
+    data:sendDate,
+    headers: {'Content-Type': 'application/json;charset=utf-8'}
+  }).success(function(){
+    $scope.getUserInfo();
+  });
+};// end saveDate function
+
+
+
+
 }]);

@@ -40,7 +40,9 @@
 </div>
 
 <div id="trackerMenu">
-<button ng-click="tracker = !tracker">Show price graph</button>
+  <p>Currently tracking:</p>
+  <p>Flights from <b>{{ currentLocation }}</b> to <b>{{ currentDestination }}</b> on <b> {{showDateSelected}} </b></p>
+<button id="showTracker" ng-click="tracker = !tracker">Show price graph</button>
 </div>
 
 <div id="tracker" ng-show="tracker">
