@@ -16,12 +16,14 @@ myApp.config(["$routeProvider", function ($routeProvider){ // use ngRoute to dis
 
 }]);//end ngrouter
 
+var currentUser;
 //create controller for page
 myApp.controller('controller', ['$scope', '$http', '$window', function( $scope , $http, $window, ngDialog){
   //populate username dynamically from db
   $http.get('/user').then(function(response) {
-      if(response.data.username) {
-          $scope.userName = response.data.username;
+      currentUser=response.data;
+      if(currentUser.username) {
+          $scope.userName = currentUser.username;
           console.log('User Data: ', $scope.userName);
       } else {
           $window.location.href = '/index.html';
@@ -30,14 +32,15 @@ myApp.controller('controller', ['$scope', '$http', '$window', function( $scope ,
 
   //scope the inputs
 
+var userLocations;
 
 $scope.checkInput = function (){
-  var homeLoc = $scope.homeIn;
-  var destLoc = $scope.destIn;
-  console.log("before constructing object: " + homeLoc + " " + destLoc);
+  var homeLocIn = $scope.homeIn;
+  var destLocIn = $scope.destIn;
+  console.log("before constructing object: " + homeLocIn + " " + destLocIn);
   var checkInputObj = {
-    from : homeLoc,
-    to : destLoc
+    from : homeLocIn,
+    to : destLocIn
   };
   console.log(checkInputObj);
   //check db if shortcodes and/or cities matched
@@ -48,22 +51,28 @@ $scope.checkInput = function (){
       headers: {'Content-Type': 'application/json;charset=utf-8'}
     }).then ( function (response){
       console.log("in post call " , response.data);
-      var receiveLoc = response.data;
-      //check if both items were returned from db.
-      if (receiveLoc.length ==2 ) {
-        //go through a loop to match the from/to destinations
-        for (var i = 0; i < receiveLoc.length; i++) {
-           receiveLoc[i].city || receiveLoc[i].code
-        }
-      }
-
+      userLocations = response.data;
+      $scope.homeLoc = userLocations[0].city;
+      $scope.destLoc = userLocations[1].city;
 
     });
 }; //end checkInput
 
 
-//modal?
+//modal confirmation to update user settings in db
+$scope.saveTracking = function(data) {
+  var userLocationsObj = {
+    user: $scope.userName,
+    locations: userLocations
+  };
+  $http({
+    method:'POST',
+    url:'/user',
+    data:userLocationsObj,
+    headers: {'Content-Type': 'application/json;charset=utf-8'}
+  });
 
+};
 
 
 //send API request,
@@ -73,9 +82,9 @@ $scope.sendApiRequest = function () {
   "request": {
     "slice": [
       {
-        "origin": "MSP", //will populate dynamically from user entry
-        "destination": "SFO", //also dynamic
-        "date": "2016-07-29", // also
+        "origin": currentUser.homeLoc.code, //will populate dynamically from user entry
+        "destination": currentUser.destLoc.code, //also dynamic
+        "date": "2016-08-01", // also
         "maxStops": 0
       }
     ],
@@ -107,5 +116,7 @@ $scope.sendApiRequest = function () {
     });
 
 };//end API request function
+
+//instert data into chartsJS and display upon request
 
 }]);

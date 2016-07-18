@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html >
+  <head>
     <meta charset="UTF-8">
-    <title>Failed</title>
+    <title>login failure</title>
+    <!-- <link rel="stylesheet" href="/vendors/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="/assets/styles/index.css">
+        <script src="/vendors/angular.min.js" charset="utf-8"></script>
+        <script src="/assets/scripts/script.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/vendors/angular-route.min.js" charset="utf-8"></script>
+  </head>
 
-    <link rel="stylesheet" href="/vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/styles/style.css">
-</head>
-<body>
-    <div class="instructions">
-    <div class="container">
-        <h1 class="lead">Failed to login</h1>
+  <body ng-app="myApp">
+
+    <div id="clouds">
+	<div class="cloud x1"></div>
+	<!-- Time for multiple clouds to dance around -->
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
+
+ <div class="container">
+
+
+      <div id="login">
+
+        <form action="/" method="post">
+
+          <fieldset class="clearfix">
+            <h1 class="lead">Failed to login</h1>
+          </fieldset>
+
+        </form>
+
+        <p><a href="/index" class="blue">Back to login</a><span class="fontawesome-arrow-right"></span></p>
+
+      </div> 
+
     </div>
 
-
-    </div>
-    <p><a href="/">Back to login</a></p>
-</body>
+  </body>
 </html>

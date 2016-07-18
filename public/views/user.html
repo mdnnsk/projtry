@@ -3,8 +3,10 @@
 <head>
     <title>Welcome!</title>
 
-    <link rel="stylesheet" href="/vendors/bootstrap.css">
+
+    <link rel="stylesheet" href="/assets/styles/user.css">
     <link rel="stylesheet" href="/assets/styles/style.css">
+    <link rel="stylesheet" href="/vendors/bootstrap.css">
 
     <script src="/vendors/angular.min.js" charset="utf-8"></script>
     <script src="/assets/scripts/script.js" charset="utf-8"></script>
@@ -15,13 +17,34 @@
 
 
   </head>
+
   <body ng-controller="controller">
-    <h1>flytrends</h1>
-    <h3>Welcome back, {{userName}}</h3>
-    <div ng-include="'/partials/nav.html'"></div>
-    <main ng-view></main>
+      <div class="nav">
+        <div class="logo">
+          <h1>flytrends</h1>
+        </div>
+        <div class="navlist" ng-include="'/partials/nav.html'"></div>
+      </div>
+
+<div id="clouds">
+	<div class="cloud x1"></div>
+	<!-- Time for multiple clouds to dance around -->
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+</div>
+
+ <div class="container">
 
 
+   <h3>Welcome back, {{userName}}</h3>
+      <fieldset class="clearfix">
+        <main ng-view></main>
+      </fieldset>
+
+
+</div>
 
 
   </body>

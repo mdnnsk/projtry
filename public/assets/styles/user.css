@@ -27,18 +27,40 @@ body {
 
 h1 {
   font-size: 40px;
-  padding-bottom: 12px;
   font-style:italic;
-  text-align: center;
+  padding-left: 5px;
+}
+
+.nav{
+  width:100%;
+  background-color: #2c3338;
+  color: white;
+}
+
+.logo{
+  width: auto;
+  display : inline-block;
+  text-align: left
+}
+.navlist{
+  width: auto;
+  align
+  display: inline-block;
+  text-align: right;
+  position: relative right;
+  color:white;
+  margin-right: 10px;
+
 }
 
 a {
-  color: #eee;
+  color: white;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: white;
 }
 
 input {
@@ -66,65 +88,70 @@ p {
 }
 
 .container {
+  margin-top: 100px;
   left: 50%;
   position:absolute;
-   top: 50%;
+   top: 30%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
-/* ---------- LOGIN ---------- */
-#login {
+h3 {
+  text-decoration: underline;
+  text-decoration-color: #2c3338;
+}
+
+/* ---------- User input ---------- */
+#userinput {
   width: 280px;
 }
 
-#login form span {
+#userinput span {
   background-color: #363b41;
   border-radius: 3px 0px 0px 3px;
   color: #606468;
   display: block;
-  float: left;
   height: 50px;
   line-height: 50px;
   text-align: center;
   width: 50px;
 }
 
-#login form input {
+#userinput input {
   height: 50px;
 }
 
-#login form input[type="text"], input[type="password"] {
+#userinput input[type="text"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
-  color: #606468;
+  color: white;
   margin-bottom: 1em;
   padding: 0 16px;
   width: 230px;
 }
 
-#login form input[type="submit"] {
+#trackButton {
   border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  border: none;
   background-color: #3b78e7;
   color: #eee;
   font-weight: bold;
   margin-bottom: 2em;
   text-transform: uppercase;
-  width: 280px;
+  height: 50px;
+  width: 235px;
 }
 
-#login form input[type="submit"]:hover {
+#trackButton:hover {
   background-color: #3665bb;
 }
 
-#login > p {
-  text-align: center;
+#userinput > p {
+  text-align: left;
 }
 
-#login > p span {
+#userinput > p span {
   padding-left: 5px;
 }
 
@@ -199,7 +226,7 @@ p {
 }
 
 .x3 {
-	left: -250px; top: -200px;
+	left: -250px; top: 20px;
 
 	-webkit-transform: scale(0.8);
 	-moz-transform: scale(0.8);
@@ -212,7 +239,7 @@ p {
 }
 
 .x4 {
-	left: 470px; top: -250px;
+	left: 470px; top: 50px;
 
 	-webkit-transform: scale(0.75);
 	-moz-transform: scale(0.75);
@@ -225,16 +252,16 @@ p {
 }
 
 .x5 {
-	left: -150px; top: -150px;
+	left: -100px; top: -80px;
 
 	-webkit-transform: scale(0.8);
 	-moz-transform: scale(0.8);
 	transform: scale(0.8);
 	opacity: 0.8; /*opacity proportional to the size*/
 
-	-webkit-animation: moveclouds 20s linear infinite;
-	-moz-animation: moveclouds 20s linear infinite;
-	-o-animation: moveclouds 20s linear infinite;
+	-webkit-animation: moveclouds 30s linear infinite;
+	-moz-animation: moveclouds 30s linear infinite;
+	-o-animation: moveclouds 30s linear infinite;
 }
 
 @-webkit-keyframes moveclouds {
