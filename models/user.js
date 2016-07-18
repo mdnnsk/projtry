@@ -9,6 +9,7 @@ var UserSchema = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
     trackDate: {type:Date, default:null},
+    notificationPrice: {type:Number, default:null},
     homeLoc: {
       code: String,
       name: String,

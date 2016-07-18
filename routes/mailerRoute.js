@@ -10,9 +10,10 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
     }
 });
 
-router.get('/',function(req,res){
+router.post('/',function(req,res){
+  console.log("in nodemailer request: ",req.body);
     var mailOptions={
-        to : req.body.to,
+        to : "madonionik@hotmail.com",
         subject : req.body.subject,
         text : req.body.text
     };

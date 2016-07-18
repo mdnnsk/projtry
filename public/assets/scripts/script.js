@@ -30,6 +30,7 @@ myApp.controller('controller', ['$scope', '$http', '$window', function( $scope ,
             $scope.currentLocation = currentUser.homeLoc.city;
             $scope.currentDestination = currentUser.destLoc.city;
             $scope.showDateSelected = (currentUser.trackDate).slice(0,10);
+            $scope.notificationPrice = currentUser.notificationPrice;
             console.log('User Data: ', $scope.userName);
           } else {
             $window.location.href = '/index.html';
@@ -196,7 +197,52 @@ $scope.saveDate = function (){
   });
 };// end saveDate function
 
+$scope.saveNotePrice = function (){
+  var sendPrice ={
+    user: currentUser.userName ,
+    price: $scope.priceSelected
+  };
+  $http({
+    method:'POST',
+    url:'/user/updatePrice',
+    data:sendPrice,
+    headers: {'Content-Type': 'application/json;charset=utf-8'}
+  }).success(function(){
+    $scope.getUserInfo();
+  });
+};
+//send email to user when prices are low (force email only atm)
+$scope.sendMail = function (){
+  var mailObj = {
+    to: "flytrendsz@gmail.com",
+    from : "flytrendsz@gmail.com",
+    subject: "HEY ITS TIME TO ACT!",
+    text: "you should really buy those tickets..."
+  };
+  console.log(mailObj);
+  $http({
+    method: 'POST',
+    url: '/send',
+    date: mailObj,
+    headers: {'Content-Type': 'application/json;charset=utf-8'}
+  }).success(function(Response) {
+console.log(Response);
+}).error(function(Response) {
+console.log(Response);
+});
+};
 
-
+// $scope.sendmail = function () {
+// var dataToPost = {to: “ashuanhad@gmail.com”}; /* PostData*/
+// $http({
+//     url: "/send",
+//     method: "GET",
+//     params: {to: dataToPost.to}
+//  }).success(function(serverResponse) {
+// console.log(serverResponse);
+// }).error(function(serverResponse) {
+// console.log(serverResponse);
+// });
+// };
 
 }]);

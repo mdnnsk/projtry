@@ -11,5 +11,9 @@
   Notify when price goes below:
 </p>
 <p>
-  <input type="text" id="notifyPrice" name="name" value="">
+  <input type="number" id="notifyPrice" name="name" ng-model="priceSelected" value=""> Will notify when price goes below: <b> {{ notificationPrice }} </b>
+</p>
+<p>
+  <button type="button" id="saveNotePrice" name="button" ng-click="saveNotePrice()">Save</button>
+  <button type="button" id="forceEmail" name="button" ng-click="sendMail()">force email</button>
 </p>

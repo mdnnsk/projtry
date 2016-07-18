@@ -124,7 +124,7 @@ h3 {
   height: 50px;
 }
 
-input[type="text"], input[type="date"] {
+input[type="text"], input[type="date"], input[type="number"] {
   background-color: #3b4148;
   border-radius: 3px;
   color: white;
@@ -149,7 +149,7 @@ input[type="text"], input[type="date"] {
   background-color: #3665bb;
 }
 
-#showTracker, #saveDate{
+#showTracker, #saveDate, #saveNotePrice{
   border-radius: 3px;
   border: none;
   background-color: #3b78e7;
@@ -161,7 +161,7 @@ input[type="text"], input[type="date"] {
   width: 100px;
 }
 
-#showTracker:hover, #saveDate:hover {
+#showTracker:hover, #saveDate:hover, #saveNotePrice:hover {
   background-color: #3665bb;
 }
 
