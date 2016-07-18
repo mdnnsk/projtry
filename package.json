@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-chart.js": "^1.0.0-alpha8",
     "angular-modal-service": "^0.10.1",
     "angular-route": "^1.5.7",
     "bcrypt": "^0.8.7",

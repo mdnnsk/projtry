@@ -53,6 +53,10 @@ h1 {
 
 }
 
+#myModal {
+  margin-top: 30%;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -88,13 +92,11 @@ p {
 }
 
 .container {
-  margin-top: 100px;
-  left: 50%;
+
+  left: 10px;
   position:absolute;
-   top: 30%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 100px;
+
 }
 
 h3 {
@@ -122,7 +124,7 @@ h3 {
   height: 50px;
 }
 
-#userinput input[type="text"] {
+#userinput input[type="text"], input[type="date"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
   color: white;
@@ -155,6 +157,14 @@ h3 {
   padding-left: 5px;
 }
 
+#tracker {
+  height: auto;
+  width : 500px;
+}
+main {
+  margin-top: auto;
+}
+
 /*Lets start with the cloud formation rather*/
 
 /*The container will also serve as the SKY*/
@@ -162,7 +172,7 @@ h3 {
 *{ margin: 0; padding: 0;}
 
 #clouds{
-	padding: 50px 0;
+	padding: 60px 0;
 	background: #c9dbe9;
 	background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
 	background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);

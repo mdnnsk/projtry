@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ["ngRoute"]);
+var myApp = angular.module('myApp', ["ngRoute", "chart.js"]);
 
 myApp.config(["$routeProvider", function ($routeProvider){ // use ngRoute to display 2 views
   $routeProvider.
@@ -77,14 +77,17 @@ $scope.saveTracking = function(data) {
 
 //send API request,
 $scope.sendApiRequest = function () {
-
+  if (currentUser.trackDate === null) {
+    alert("Please specify date in settings");
+  } else {
+    apiReqDate = currentUser.trackDate.slice(0,10);
   var apiQuery = {
   "request": {
     "slice": [
       {
-        "origin": currentUser.homeLoc.code, //will populate dynamically from user entry
-        "destination": currentUser.destLoc.code, //also dynamic
-        "date": "2016-08-01", // also
+        "origin": currentUser.homeLoc.code,
+        "destination": currentUser.destLoc.code,
+        "date": apiReqDate, 
         "maxStops": 0
       }
     ],
@@ -114,9 +117,48 @@ $scope.sendApiRequest = function () {
         headers: {'Content-Type': 'application/json;charset=utf-8'}
         });
     });
+  $scope.displayChart();
+}};//end API request function
 
-};//end API request function
-
+$scope.tracker = false;
 //instert data into chartsJS and display upon request
 
+$scope.displayChart = function (){
+$http.get('/data').then(function(response) {
+  console.log("in chartsjs get call: ", response);
+  //build data arrays for chart
+  var dateArray = [];
+  for (var i = 0; i < response.data.length; i++) {
+    var query_date = (response.data[i].querydate).slice(0,10);
+    dateArray.push(query_date);
+  }
+  var priceArray = [];
+  for (var j = 0; j < response.data.length; j++) {
+    priceArray.push(response.data[j].price);
+  }
+
+  //display data on chart
+  $scope.labels = dateArray;
+  $scope.series = ['Series A'];
+  $scope.data = [priceArray];
+  $scope.onChartClick = function (points, evt) {
+  console.log(points, evt);
+  };
+  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+  $scope.options = {
+    scales: {
+      yAxes: [
+        {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+
+        }
+      ]
+    }
+  };//end chartsJS
+});//end function after http
+};
+$scope.displayChart();
 }]);

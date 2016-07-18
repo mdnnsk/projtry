@@ -8,8 +8,8 @@
       </div>
       <div class="modal-body">
         <p>ARE YOU SURE YOU WANT TO TRACK FLIGHTS</p>
-        <p>FROM {{ homeLoc }} </p>
-        <p>TO {{ destLoc }}</p>
+        <p>FROM: <b>{{ homeLoc }}</b> </p>
+        <p>TO: <b>{{ destLoc }}</b> </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveTracking()">YES</button>
@@ -28,7 +28,7 @@
 
 
 
-  <button type="button" name="button" ng-click="sendApiRequest()">API REQ</button>
+
 
   <div id="modaldiv">
     <!-- Button trigger modal -->
@@ -38,6 +38,16 @@
 
   </div>
 </div>
-<div class="tracker">
-<p>
+
+<div id="trackerMenu">
+<button ng-click="tracker = !tracker">Show price graph</button>
+</div>
+
+<div id="tracker" ng-show="tracker">
+  <canvas width="auto" height="auto" id="line" class="chart chart-line"
+    chart-data="data" chart-labels="labels" chart-series="series"
+    chart-options="options" chart-dataset-override="datasetOverride"
+    chart-click="onChartClick">
+  </canvas>
+  <button type="button" name="button" ng-click="sendApiRequest()">Force API req</button>
 </div>
