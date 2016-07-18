@@ -222,11 +222,11 @@ $scope.sendMail = function (){
   console.log(mailObj);
   $http({
     method: 'POST',
-    url: '/send',
-    date: mailObj,
+    url: '/sendMail',
+    data: mailObj,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
-  }).success(function(Response) {
-console.log(Response);
+  }).then(function(Response) {
+console.log("in sendMail post call success: ",Response);
 }).error(function(Response) {
 console.log(Response);
 });

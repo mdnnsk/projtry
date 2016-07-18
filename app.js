@@ -40,8 +40,9 @@ app.use('/data', data);
 app.use('/location', location);
 app.use('/register', register);
 app.use('/user', user);
+app.use('/sendMail', mailer);
 app.use('/*', index);
-app.use('/send', mailer);
+
 
 // Mongo Connection //
 var mongoURI = "mongodb://localhost:27017/flights";
